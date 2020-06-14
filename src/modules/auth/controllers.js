@@ -1,5 +1,6 @@
 import { UserModel } from '../../models'
 import { sendSmsToAuth } from '../../services/sms'
+import { createToken } from '../../services/jwt'
 
 export async function requestToAuth(req, res) {
   try {
@@ -24,5 +25,19 @@ export async function requestToAuth(req, res) {
 }
 
 export async function auth(req, res) {
+  try {
+    const { email, smsCode } = req.body
 
+    const checkIfExists = await UserModel.findOne({ email, last_token: smsCode })
+
+    if (!checkIfExists) {
+      return res.status(404).json({ message: 'email/código não identificados, confirme os dados e tente novamente' })
+    }
+
+    const auth_token = createToken(checkIfExists._id)
+
+    return res.json({ ...checkIfExists.sanitize(), auth_token })
+  } catch (error) {
+    return res.status(502).json({ message: 'ocorreu uma falha, tente novamente', error: String(error) })
+  }
 }
