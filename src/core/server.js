@@ -4,6 +4,7 @@ import cors from 'cors'
 import compression from 'compression'
 
 import { userRoutes } from '../modules/Users'
+import { authRoutes } from '../modules/auth'
 
 export function server() {
   const app = express()
@@ -13,6 +14,7 @@ export function server() {
   app.use(cors())
   app.use(compression())
 
+  app.use('/auth', authRoutes)
   app.use('/users', userRoutes)
 
   return {

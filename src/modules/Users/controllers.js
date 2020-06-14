@@ -7,15 +7,13 @@ export async function store(req, res) {
     const checkIfExists = await UserModel.findOne({ email })
 
     if (checkIfExists) {
-      return res
-        .status(404)
-        .json({ message: 'email já cadastrados' })
+      return res.status(404).json({ message: 'email já cadastrados' })
     }
 
     const insertedUser = await UserModel.create({ email, cellphone, gender })
 
     return res.status(201).json({ ...insertedUser.sanitize() })
   } catch (error) {
-    return res.json({ error })
+    return res.status(502).json({ error })
   }
 }

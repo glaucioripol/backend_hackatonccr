@@ -27,8 +27,8 @@ const schema = new Schema(
 )
 
 schema.methods.sanitize = function () {
-  const { _id: id, email, cellphone, createdAt, updatedAt } = this
-  return { id, email, cellphone, createdAt, updatedAt }
+  const { _id: id, email, cellphone, gender, createdAt, updatedAt } = this
+  return { id, email, cellphone, gender, createdAt, updatedAt }
 }
 
 export const UserModel = model('User', schema)
