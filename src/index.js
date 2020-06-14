@@ -2,7 +2,7 @@ import { config } from 'dotenv'
 import { server } from './core/server'
 import { connect } from './core/database'
 
-async function main() {
+(async () => {
   config()
   try {
     await connect()
@@ -11,6 +11,4 @@ async function main() {
     console
       .error('Failed to start application', error)
   }
-}
-
-main()
+})()

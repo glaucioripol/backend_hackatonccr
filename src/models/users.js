@@ -13,7 +13,8 @@ const schema = new Schema(
       unique: true
     },
     last_token: {
-      type: String
+      type: String,
+      default: ''
     },
     gender: {
       type: String,
