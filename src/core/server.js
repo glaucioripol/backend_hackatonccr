@@ -16,6 +16,6 @@ export function server() {
     .use(routes)
 
   return {
-    start: () => app.listen(process.env.port || 3333, () => console.log('server up'))
+    start: () => app.listen(process.env.PORT || 3333, () => console.log('server up'))
   }
 }
