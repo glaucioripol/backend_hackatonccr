@@ -62,4 +62,4 @@ const schemaPlaces = new Schema(
 //   return { id, email, cellphone, gender, createdAt, updatedAt }
 // }
 
-export const UserModel = model('PlacesToStop', schemaPlaces)
+export const PlacesModel = model('PlacesToStop', schemaPlaces)
