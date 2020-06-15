@@ -1,4 +1,5 @@
 import { config } from 'dotenv'
+
 import { server } from './core/server'
 import { connect } from './core/database'
 

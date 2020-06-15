@@ -3,21 +3,19 @@ import helmet from 'helmet'
 import cors from 'cors'
 import compression from 'compression'
 
-import { userRoutes } from '../modules/Users'
-import { authRoutes } from '../modules/auth'
+import { routes } from '../modules'
 
 export function server() {
   const app = express()
 
-  app.use(express.json())
-  app.use(helmet())
-  app.use(cors())
-  app.use(compression())
-
-  app.use('/auth', authRoutes)
-  app.use('/users', userRoutes)
+  app
+    .use(express.json())
+    .use(helmet())
+    .use(cors())
+    .use(compression())
+    .use(routes)
 
   return {
-    start: () => app.listen(3333, () => console.log('server up'))
+    start: () => app.listen(process.env.port || 3333, () => console.log('server up'))
   }
 }
